@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const config = {
@@ -11,22 +11,9 @@ const config = {
 	appId: process.env.REACT_APP_APP_ID
 };
 
-class Firebase {
-  constructor() {
-		app.initializeApp(config);
-		
-		this.auth = app.auth();
-		this.googleProvider = new app.auth.GoogleAuthProvider();
-	}
-	
-	// ** AUTH **
-	doSignInWithGoogle = () => {
-		return this.auth.signInWithPopup(this.googleProvider);
-	}
+firebase.initializeApp(config);
 
-	doSignOut = () => {
-		return this.auth.signOut();
-	}
-}
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
  
-export default Firebase;
+export {googleAuthProvider};
+export default firebase;
