@@ -1,52 +1,36 @@
 import { action, thunk } from 'easy-peasy';
 import firebase, {googleAuthProvider} from '../firebase/firebaseSetup';
 
+const INITIAL_STATE = {
+	uid: null,
+	name: "User",
+	email: null,
+	profilePhoto: null
+}
+
 const authModel = {
-	user: {
-		uid: null,
-		name: "User",
-		email: null
-	},
+	user: INITIAL_STATE,
 	error: null,
 	// Start login with Google
 	startLogin: thunk((actions, payload) => { 
-		firebase.auth().signInWithPopup(googleAuthProvider)
-			.then(authUser => {
-				// login successful
-				actions.login(authUser.user);
-				console.log(authUser.user);
-			})
-			.catch(error => {
-				// login failed, set error state
-				actions.setError(error);
-			})
+		return firebase.auth().signInWithPopup(googleAuthProvider);
 	}),
 	// start logout
 	startLogout: thunk((actions, payload) => {
-		firebase.auth().signOut()
-			.then(() => {
-				// logout successful
-				actions.logout();
-			}).catch(function(error) {
-				// logout failed, set error state
-				actions.setError(error);
-			});
+		return firebase.auth().signOut();
 	}),
 	// Set login state
 	login: action((state, payload) => {
 		state.user = {
 			uid: payload.uid,
 			name: payload.displayName,
-			email: payload.email
+			email: payload.email,
+			profilePhoto: payload.photoURL
 		};
 	}),
 	// set logout state
 	logout: action((state, payload) => {
-		state.user = {
-			uid: null,
-			name: "User",
-			email: null
-		};
+		state.user = INITIAL_STATE;
 	}),
 	// set error state
 	setError: action((state, payload) => {

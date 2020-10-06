@@ -1,20 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, useHistory } from 'react-router-dom';
 
 import Navbar from './Navbar';
-import LandingPage from '../pages/Landing';
+import HomePage from '../pages/Home';
 import DashboardPage from '../pages/Dashboard';
-import LoginPage from '../pages/Login';
+import PrivateRoute from './PrivateRoute';
 import * as ROUTES from '../constants/routes';
 
 function App() {
 	return (
-		<Router>
+		<Router >
 			<Navbar />
 
-			<Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.LOGIN} component={LoginPage} />
-      <Route path={ROUTES.DASHBOARD} component={DashboardPage} />
+			<Route exact path={ROUTES.HOME} component={HomePage} />
+      <PrivateRoute path={ROUTES.DASHBOARD} component={DashboardPage} />
 		</Router>
 	);
 }

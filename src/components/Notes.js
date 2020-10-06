@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import NotesListed from './Note';
@@ -7,43 +8,47 @@ import NotesListed from './Note';
 
 function NotesForm() {
 	const [note, setNote] = useState("");
-	const [notesList, setList] = useState([]);
+	const itemsState = useStoreState(state => state.notes.items);
+	const authState = useStoreState(state => state.auth.user);
+	const notesError = useStoreState(state => state.notes.error);
+	const startAddNote = useStoreActions(actions => actions.notes.startAddNote);
+	const startUpdateNote = useStoreActions(actions => actions.notes.startUpdateNote);
+	const startDeleteNote = useStoreActions(actions => actions.notes.startDeleteNote);
+	const setNoteError = useStoreActions(actions => actions.notes.setError);
 
 	const onFormSubmit = (e) => {
 		e.preventDefault();
 		let notePresent = false;
-		notesList.forEach(notesElement => {
-			if (notesElement.text == note || notesElement.text == "") {
+		itemsState.forEach(item => {
+			if (item.text == note || item.text == "") {
 				notePresent = true;
 				return;
 			}
-
 		});
-
 		if (notePresent)
 			return;
-
 		const newNote = {
-			id: uuidv4(),
-			text: note
+			text: note,
+			uid: authState.uid
 		}
-		setList([...notesList, newNote]);
+		startAddNote(newNote).catch(err => {
+			setNoteError(err);
+			return;
+		});
 		setNote("");
 	}
 
 	function deleteNote(id) {
-		setList(notesList.filter(notesElement => notesElement.id != id));
-	}
-	function updateNote(id, updatedText) {
-		const updatedNotes = [...notesList];
-		updatedNotes.forEach(notesElement => {
-			if (notesElement.id == id) {
-				notesElement.text = updatedText;
-				return;
-			}
-
+		startDeleteNote(id).catch(err => {
+			setNoteError(err);
+			return;
 		});
-		setList(updatedNotes);
+	}
+	function updateNote(updatedNote) {
+		startUpdateNote(updatedNote).catch(err => {
+			setNoteError(err);
+			return;
+		});
 	}
 
 	return (
@@ -56,10 +61,9 @@ function NotesForm() {
 			<List aria-label="main mailbox folders" align="center">
 
 				{
-					notesList.map((notesElement) => {
-						console.log(notesList)
-						console.log(notesElement.id)
-						return <NotesListed notesElement={notesElement} key={notesElement.id} deleteNote={deleteNote} updateNote={updateNote} />
+					itemsState.map((note) => {
+						console.log(note)
+						return <NotesListed note={note} key={note.id} deleteNote={deleteNote} updateNote={updateNote} />
 					})
 
 				}
