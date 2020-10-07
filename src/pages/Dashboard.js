@@ -13,6 +13,8 @@ import MotiQuote from '../components/MotiQuote';
 import Notes from '../components/Notes';
 import QuestList from '../components/QuestList';
 
+import ProfileBar from '../components/ProfileBar';
+
 export default function Home() {
 	const authState = useStoreState(state => state.auth.user);
   return (
@@ -23,7 +25,7 @@ export default function Home() {
 			<Typography variant="h5">
 				Welcome back, {authState.name}
 			</Typography>
-			<MotiQuote />
+			<ProfileBar/>
 			<Grid container spacing={3}>
 				<Grid item xs={12} sm={6}>
 					<Notes />
