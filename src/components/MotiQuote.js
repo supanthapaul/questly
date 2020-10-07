@@ -41,7 +41,7 @@ function MotiQuote() {
 			})
 			.then(function (data) {
 				getQuote(data);
-				setInterval(getQuote.bind(this, data), 5000);
+				setInterval(getQuote.bind(this, data), 10000);
 			});
 	}, []);
 
@@ -56,7 +56,7 @@ function MotiQuote() {
 		<Card variant="outlined" className={classes.background}>
 			<CardContent className={classes.content}>
 				<Typography className={classes.title} gutterBottom>
-					<i>{quote.text ? (quote.text) : "Loading..."}</i>
+					<i><q>{quote.text ? (quote.text) : "Loading..."}</q></i>
 				</Typography>
 			</CardContent>
 			<CardActions className={classes.actions}>

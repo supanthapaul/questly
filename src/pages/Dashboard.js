@@ -30,10 +30,10 @@ export default function Home() {
 			<ProfileBar/>
 			<Grid container spacing={5} className={classes.padding}>
 				<Grid item xs={12} sm={6}>
-					<Notes />
+					<QuestList />
 				</Grid>
 				<Grid item xs={12} sm={6}>
-					<QuestList />
+					<Notes />
 				</Grid>
 			</Grid>
     </>

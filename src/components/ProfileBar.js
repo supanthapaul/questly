@@ -32,17 +32,19 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.secondary,
 	},
 	large: {
-		width: theme.spacing(25),
-		height: theme.spacing(25),
+		width: theme.spacing(22),
+		height: theme.spacing(22),
 		border: "5px solid white",
-		backgroundColor: '#333'
+		borderRadius: theme.spacing(3),
+		background: 'radial-gradient(#6e6e6e, #333)',
+		padding: '10px'
 	},
-	spacePad:{
+	spacePad: {
 		paddingLeft: theme.spacing(6),
 		paddingRight: theme.spacing(6),
 		backgroundColor: '#2c387e'
 	},
-	textWhite:{
+	textWhite: {
 		color: '#ffffff'
 	}
 }));
@@ -51,23 +53,26 @@ export default function ProfileBar() {
 	const [progress, setProgress] = useState(69);
 	const classes = useStyles();
 	const authState = useStoreState(state => state.auth.user);
-
+	const { level, currXp, limitXp, rankUrl } = useStoreState(state => state.user.stats);
+	const normaliseXp = value => (value - 0) * 100 / (limitXp - 0);
 	return (<>
+		<br />
 		<Grid container spacing={4} className={classes.spacePad}>
 			<Grid item xs={4} sm={2}>
-				<Avatar alt="Reeeeeeeee" src="https://i.redd.it/vrnjfeshnjt41.jpg" className={classes.large} />
+				<img alt="Reeeeeeeee" src={rankUrl} className={classes.large} />
 			</Grid>
 			<Grid item xs={8} sm={4}>
 				<br />
-	<Typography variant="h4" className={classes.textWhite} >{authState.name}</Typography>
+				<Typography variant="h4" className={classes.textWhite} >{authState.name}</Typography>
+				<Typography variant="subtitle1" className={classes.textWhite}>Level {level} Warrior</Typography>
 				<br />
-				<BorderLinearProgress variant="determinate" value={progress} />
-				<Typography variant="subtitle1" className={classes.textWhite}>Level 2 nibba</Typography>
-				<Typography variant="subtitle1" className={classes.textWhite}>69/100</Typography>
+				<BorderLinearProgress variant="determinate" value={normaliseXp(currXp)} />
+				<Typography variant="subtitle1" className={classes.textWhite}>{currXp}/{limitXp} Experience Points</Typography>
+				<Typography variant="subtitle1" className={classes.textWhite}>{limitXp - currXp} more xp to reach Level {level + 1}! </Typography>
 			</Grid>
 			<Grid item xs={12} sm={6}>
-				<br/>
-				<br/>
+				<br />
+				<br />
 				<MotiQuote />
 			</Grid>
 		</Grid>

@@ -96,7 +96,7 @@ function NotesListed(props) {
 
 				</Card>
 			</ListItem><Divider />
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+			<Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Update</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
