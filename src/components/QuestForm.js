@@ -32,7 +32,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 // }	
 
 
-export default function QuestForm() {
+export default function QuestForm(props) {
 	const [quest, setQuest] = useState({ text: "", subList: [], dueDate: "2020-05-24", difficulty: 0, isCompleted: false });
 	const [subList, setSubList] = useState([{ text: "", completed: false }]);
 	const [open, setOpen] = useState(false);
@@ -80,6 +80,12 @@ export default function QuestForm() {
 
 	const onFormSubmit = () => {
 		console.log("form submit");
+		console.log(subList);
+		const newQuest = {
+			...quest,
+			subList: [...subList]
+		}
+		props.addQuest(newQuest);
 	}
 
 	const addSubList = (e) => {
