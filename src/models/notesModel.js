@@ -12,13 +12,7 @@ const notesModel = {
 			...payload,
 			date: dayjs().format()
 		}
-		return db.collection("notes").add(newNote).then(ref => {
-			// add note to local state
-			actions.addNote({
-				id: ref.id,
-				...newNote
-			})
-		})
+		return db.collection("notes").add(newNote)
 	}),
 	// update a note from firebase by id
 	// payload --> updated note
@@ -26,35 +20,32 @@ const notesModel = {
 		return db.collection("notes").doc(payload.id).set({
 			...payload
 		}, { merge: true })
-			.then(() => {
-				// update success, update to local state
-				actions.updateNote(payload);
-			})
+
 	}),
 	// get all the notes of the user from firebase
 	// payload --> uid
 	startSetNotes: thunk((actions, payload) => {
-		return db.collection("notes").where("uid", "==", payload).get()
-			.then(snapshot => {
-				const notes = [];
-				snapshot.forEach(doc => {
-					notes.push({
-						id: doc.id,
-						...doc.data()
-					});
+		return db.collection("notes").where("uid", "==", payload).onSnapshot(snapshot => {
+			const notes = [];
+			snapshot.forEach(doc => {
+				notes.push({
+					id: doc.id,
+					...doc.data()
 				});
-				// set notes to local state
-				actions.setNotes(notes);
-			})
+			});
+			// set notes to local state
+			actions.setNotes(notes);
+			}, error => {
+				// set error to local state
+				actions.setError(error);
+			}
+		)
+			
 	}),
 	// delete a note from firebase
 	// payload --> id
 	startDeleteNote: thunk((actions, payload) => {
 		return db.collection("notes").doc(payload).delete()
-			.then(() => {
-				// delete note from local state
-				actions.deleteNote(payload);
-			})
 	}),
 	addNote: action((state, payload) => {
 		state.items = [...state.items, payload];

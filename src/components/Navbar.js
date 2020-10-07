@@ -36,7 +36,7 @@ export default function Navbar() {
 				// store user in store
 				setLogin(user);
 				// fetch all the notes from server
-				startSetNotes(user.uid).catch(err => console.log(err))
+				startSetNotes(user.uid)
 				history.push('/dashboard');
 			}
 			else {
