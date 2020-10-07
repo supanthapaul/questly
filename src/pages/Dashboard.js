@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 import MotiQuote from '../components/MotiQuote';
 import Notes from '../components/Notes';
+import QuestList from '../components/QuestList';
 
 export default function Home() {
 	const authState = useStoreState(state => state.auth.user);
@@ -26,6 +27,9 @@ export default function Home() {
 			<Grid container spacing={3}>
 				<Grid item xs={12} sm={6}>
 					<Notes />
+				</Grid>
+				<Grid item xs={12} sm={6}>
+					<QuestList />
 				</Grid>
 			</Grid>
     </>
