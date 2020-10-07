@@ -8,15 +8,22 @@
 
 import React, {useState} from 'react';
 import QuestForm from './QuestForm';
+import Quest from './Quest';
 
 export default function QuestList(){
 	const[questList,setQuestList] = useState([]);
 
-	const pushQuest= () =>{
+	// const pushQuest= () =>{
+	// 	const newQuest={
+	// 		id:
 
-	}
-	return(
+	// 	}
+	// }
+
+	return(<>
 		<QuestForm/>
+		<Quest/>
+</>
 	);
 }
 

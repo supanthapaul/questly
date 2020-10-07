@@ -33,7 +33,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 
 export default function QuestForm() {
-	const [quest, setQuest] = useState({ text: "", subList: [], dueDate: "2017-05-24", difficulty: 0, isCompleted: false });
+	const [quest, setQuest] = useState({ text: "", subList: [], dueDate: "2020-05-24", difficulty: 0, isCompleted: false });
 	const [subList, setSubList] = useState([{ text: "", completed: false }]);
 	const [open, setOpen] = useState(false);
 
@@ -101,8 +101,8 @@ export default function QuestForm() {
 	return (
 		<>
 			<form autoComplete="off">
-				<TextField id="standard-basic" label="Add Task" onClick={handleClickOpen}
-					variant="filled" fullWidth />
+				<TextField id="standard-basic" label="Click to add Quest" onClick={handleClickOpen}
+					variant="filled" fullWidth disabled/>
 			</form>
 
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
