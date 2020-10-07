@@ -104,6 +104,7 @@ function NotesListed(props) {
 						label="Update"
 						type="text"
 						fullWidth
+						multiline
 						value={note.text} onChange={handleNoteChange} autoComplete="off"
 					/>
 				</DialogContent>
