@@ -12,13 +12,18 @@ const notesModel = {
 			...payload,
 			date: dayjs().format()
 		}
-		return db.collection("notes").add(newNote)
+		const newDoc = db.collection("notes").doc();
+		return newDoc.set({
+			id: newDoc.id,
+			...newNote
+		});
 	}),
 	// update a note from firebase by id
 	// payload --> updated note
 	startUpdateNote: thunk((actions, payload) => {
 		return db.collection("notes").doc(payload.id).set({
-			...payload
+			...payload,
+			date: dayjs().format()
 		}, { merge: true })
 
 	}),

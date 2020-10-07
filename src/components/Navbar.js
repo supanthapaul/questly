@@ -25,6 +25,7 @@ export default function Navbar() {
 	const history = useHistory();
 	const startLogout = useStoreActions(actions => actions.auth.startLogout);
 	const startSetNotes = useStoreActions(actions => actions.notes.startSetNotes);
+	const startSetQuests = useStoreActions(actions => actions.quests.startSetQuests);
 	const setLogin = useStoreActions(actions => actions.auth.login);
 	const setLogout = useStoreActions(actions => actions.auth.logout);
 	const authState = useStoreState(state => state.auth.user);
@@ -37,6 +38,8 @@ export default function Navbar() {
 				setLogin(user);
 				// fetch all the notes from server
 				startSetNotes(user.uid)
+				// fetch all the quests from server
+				startSetQuests(user.uid)
 				history.push('/dashboard');
 			}
 			else {

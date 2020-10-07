@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -53,6 +53,11 @@ function NotesListed(props) {
 			text: e.target.value
 		})
 	}
+
+	// re-set note if the note prop changes from outside
+	useEffect(() => {
+		setNote(props.note);
+	}, [props.note]);
 
 	const handleUpdate = () => {
 		if(note.text === "") {

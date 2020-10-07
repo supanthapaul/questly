@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
@@ -20,7 +19,7 @@ function NotesForm() {
 		e.preventDefault();
 		let notePresent = false;
 		itemsState.forEach(item => {
-			if (item.text == note || item.text == "") {
+			if (item.text === note || item.text === "") {
 				notePresent = true;
 				return;
 			}
@@ -57,17 +56,12 @@ function NotesForm() {
 				<TextField id="standard-basic" label="Add Note" onChange={(e) => setNote(e.target.value)} value={note}
 					variant="filled" fullWidth/>
 			</form>
-
 			<List aria-label="main mailbox folders" align="center">
-
 				{
 					itemsState.map((note) => {
-						console.log(note)
 						return <NotesListed note={note} key={note.id} deleteNote={deleteNote} updateNote={updateNote} />
 					})
-
 				}
-
 			</List>
 		</>
 	);

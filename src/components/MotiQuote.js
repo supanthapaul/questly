@@ -35,7 +35,6 @@ function MotiQuote() {
 				return response.json();
 			})
 			.then(function (data) {
-				console.log(data);
 				getQuote(data);
 				setInterval(getQuote.bind(this, data), 5000);
 			});
