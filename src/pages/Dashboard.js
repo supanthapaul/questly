@@ -15,23 +15,25 @@ import QuestList from '../components/QuestList';
 
 import ProfileBar from '../components/ProfileBar';
 
+const useStyles = makeStyles((theme) =>({
+	padding:{
+		paddingRight:theme.spacing(8),
+		paddingLeft:theme.spacing(8),
+	}
+}))
+
 export default function Home() {
+	const classes = useStyles();
 	const authState = useStoreState(state => state.auth.user);
   return (
     <>
-			<Typography variant="h2">
-				Dashboard
-			</Typography>
-			<Typography variant="h5">
-				Welcome back, {authState.name}
-			</Typography>
 			<ProfileBar/>
-			<Grid container spacing={3}>
-				<Grid item xs={12} sm={6}>
-					<Notes />
-				</Grid>
+			<Grid container spacing={5} className={classes.padding}>
 				<Grid item xs={12} sm={6}>
 					<QuestList />
+				</Grid>
+				<Grid item xs={12} sm={6}>
+					<Notes />
 				</Grid>
 			</Grid>
     </>

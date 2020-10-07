@@ -130,7 +130,7 @@ export default function QuestForm(props) {
 	return (
 		<>
 			<form autoComplete="off">
-				<TextField id="standard-basic" label="Click to add Quest" onClick={handleClickOpen}
+				<TextField id="standard-basic" label="Click to start adding a Quest" onClick={handleClickOpen}
 					variant="filled" fullWidth disabled />
 			</form>
 
