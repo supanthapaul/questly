@@ -27,8 +27,9 @@ export default function QuestList() {
 		startDeleteQuest(id)
 		.catch((error)=>setQuestError(error));
 	}
-	const updateQuest = () => {
-		console.log("update quest");
+	const updateQuest = (updatedQuest) => {
+		startUpdateQuest(updatedQuest)
+		.catch((error)=>{setQuestError(error)});
 	}
 	const addQuest = (quest) => {
 		const newQuest={

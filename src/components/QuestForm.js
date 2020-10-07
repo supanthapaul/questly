@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,6 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
+import AddIcon from '@material-ui/icons/Add';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 // quest: {
@@ -19,36 +23,35 @@ import Checkbox from '@material-ui/core/Checkbox';
 // 	subList: [
 // 		{
 // 			text: "text",
-// 			completed: false
+// 			isCompleted: false
 // 		},
 // 		{
 // 			text: "text",
-// 			completed: false
+// 			isCompleted: false
 // 		}
 // 	],
 // 	dueDate: date,
 // 	difficulty: 1
 //	isCompleted: false
 // }	
-
+const useStyles = makeStyles((theme) => ({
+	fw: {
+		width: '100%',
+	},
+}));
+const INITIAL_QUEST = { text: "", subList: [], dueDate: "", difficulty: 0, isCompleted: false };
 
 export default function QuestForm(props) {
-	const [quest, setQuest] = useState({ text: "", subList: [], dueDate: "2020-05-24", difficulty: 0, isCompleted: false });
-	const [subList, setSubList] = useState([{ text: "", completed: false }]);
-	const [open, setOpen] = useState(false);
+	const classes = useStyles();
+	const [quest, setQuest] = useState(INITIAL_QUEST);
+	const [subList, setSubList] = useState([]);
+	const [dialogueOpen, setDialogueOpen] = useState(false);
 
 	const handleDifficulty = (e, newValue) => {
-		console.log(e.target.value);
 		setQuest({ ...quest, difficulty: newValue });
 	}
 
-	const handleChange = (event, index) => {
-		const newSubList = [...subList];
-		newSubList[index].completed = !newSubList[index].completed;
-		setSubList(newSubList);
-	};
-
-	const marks = [
+	const difficultyMarks = [
 		{
 			value: 0,
 			label: 'Easy',
@@ -64,40 +67,60 @@ export default function QuestForm(props) {
 	];
 
 	const handleClickOpen = () => {
-		if (!open) {
-			setOpen(true);
+		if (!dialogueOpen) {
+			setDialogueOpen(true);
 			console.log("handle open");
+			// Set due date to current time
+			setQuest({
+				...quest,
+				dueDate: dayjs().format("YYYY-MM-DDTHH:mm").toString()
+			})
 		}
 
 	};
 
-	const handleClose = () => {
-		setOpen(false);
-		console.log("handle close");
-		console.log(open);
-		onFormSubmit();
+	const handleDialogueClose = () => {
+		// empty quest state
+		setQuest(INITIAL_QUEST);
+		setSubList([]);
+		setDialogueOpen(false);
 	};
 
+	const validateQuestForm = () => {
+		let sublistValid = true;
+		subList.forEach(item => {
+			if(item.text.trim() === "") {
+				sublistValid = false;
+				return;
+			}
+		})
+		if(quest.text.trim() === "" || !sublistValid) {
+			// form isn't valid
+			return false;
+		}
+		// form is valid
+		return true;
+	}
 	const onFormSubmit = () => {
-		console.log("form submit");
-		console.log(subList);
+		if(!validateQuestForm())
+			return;
+		
 		const newQuest = {
 			...quest,
 			subList: [...subList]
 		}
 		props.addQuest(newQuest);
+		handleDialogueClose();
 	}
 
 	const addSubList = (e) => {
-		console.log("add sublist");
 		e.preventDefault();
-		const newSubList = [...subList];
-		newSubList.push({ text: "", completed: false });
+		const newSubList = [...subList].filter(item => item.text.trim() !== "");
+		newSubList.push({ text: "", isCompleted: false });
 		setSubList(newSubList);
 	}
 
 	const onSubListItemChange = (index, e) => {
-		console.log("onSubListItemChange(");
 		const newSublist = [...subList];
 		newSublist[index].text = e.target.value;
 		setSubList(newSublist);
@@ -108,10 +131,12 @@ export default function QuestForm(props) {
 		<>
 			<form autoComplete="off">
 				<TextField id="standard-basic" label="Click to add Quest" onClick={handleClickOpen}
-					variant="filled" fullWidth disabled/>
+					variant="filled" fullWidth disabled />
 			</form>
 
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+			<Dialog open={dialogueOpen} onClose={handleDialogueClose} 
+				fullWidth
+				maxWidth="sm" aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Quest</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
@@ -127,30 +152,41 @@ export default function QuestForm(props) {
 						placeholder="Enter task"
 					/>
 					<br />
-					<List component="nav" aria-label="main mailbox folders">
-						{subList.map((item, index) => {
-							return (
-								<ListItem key={index}>
-									<Checkbox
-										checked={item.completed}
-										color="primary"
-										onChange={(e) => handleChange(e, index)}
-									/>
-									<form onSubmit={addSubList}>
-										<TextField autoFocus value={item.text} onChange={(e) => onSubListItemChange(index, e)}
-											placeholder={"Checklist item " + (index + 1)} />
-									</form>
-									<Divider />
-								</ListItem>
-							)
-						})}
-					</List>
+					
+					{subList.length == 0 ?
+						<>
+							<Button fullWidth onClick={addSubList}><AddIcon /> Add Checklist</Button>
+						<br />
+						</>
+					:
+						<List component="nav" aria-label="main mailbox folders">
+							{subList.map((item, index) => {
+								return (
+									<ListItem key={index} >
+										<form onSubmit={addSubList} className={classes.fw}>
+											<TextField size="small" autoFocus
+												fullWidth
+												InputProps={{
+													startAdornment: (
+														<InputAdornment position="start">
+															<AddIcon />
+														</InputAdornment>
+													),}}
+												value={item.text} onChange={(e) => onSubListItemChange(index, e)}
+												placeholder={"Checklist item " + (index + 1)} />
+										</form>
+										<Divider />
+									</ListItem>
+								)
+							})}
+						</List>
+					}
 					<br />
 
 					<TextField
 						id="date"
 						label="Due Date"
-						type="date"
+						type="datetime-local"
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -168,7 +204,7 @@ export default function QuestForm(props) {
 						aria-labelledby="discrete-slider"
 						valueLabelDisplay="off"
 						step={1}
-						marks={marks}
+						marks={difficultyMarks}
 						min={0}
 						max={2}
 						value={quest.difficulty}
@@ -177,7 +213,7 @@ export default function QuestForm(props) {
 
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<Button onClick={onFormSubmit} color="primary">
 						Confirm
 					</Button>
 
