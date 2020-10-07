@@ -31,30 +31,31 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Quest(props) {
-	const [checkedQuest, setCheckedQuest] = useState(true);
 	const [checkedSubList, setCheckedSubList] = useState(false);
 	const [openSubList, setOpenSubList] = useState(false);
 	const [openOption, setOpenOption] = useState(false);
 	const [anchorEl, setAnchorEl] = useState(null);
 
 
-	const handleClickOptions = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
 	const classes = useStyles();
 	const handleToggleSubList = () => {
 		setOpenSubList(!openSubList);
 	};
 
-	const handleChangeQuest = (event) => {
-		setCheckedQuest(event.target.value);
+	const handleToggleQuest = (event) => {
+		//setCheckedQuest(event.target.value);
+		const newQuest = {
+			...props.quest,
+			isCompleted: !props.quest.isCompleted
+		}
+		props.updateQuest(newQuest)
 	};
 	const handleChangeSublist = (event) => {
 		setCheckedSubList(event.target.value);
 	};
 
-	const handleOptions = () => {
+	const handleOpenOptions = (e) => {
+		setAnchorEl(e.currentTarget);
 		setOpenOption(!openOption);
 	}
 
@@ -62,31 +63,31 @@ export default function Quest(props) {
 		setAnchorEl(null);
 	};
 
-	const deleteQuest = () =>{
+	const deleteQuest = () => {
 		props.deleteQuest(props.quest.id);
 		handleCloseOptions();
 	}
-
+	
 	return (
 		<>
 			<ListItem>
 				<ListItemIcon>
 					<Checkbox
-						value={checkedQuest}
-						onChange={handleChangeQuest}
+						checked={props.quest.isCompleted}
+						onChange={handleToggleQuest}
 						color="primary"
 					/>
 				</ListItemIcon>
 				<ListItemText primary={props.quest.text} />
 				<ListItemIcon>
-	{[...Array((props.quest.difficulty)+1).keys()].map((el,index)=>{
-		console.log("star Icon")
-		return <StarRateIcon key={index}/>
-		})}
-				<IconButton aria-haspopup="true"
-					onClick={handleOptions}>
-					<MoreVertIcon onClick={handleClickOptions} />
-				</IconButton>
+					{[...Array((props.quest.difficulty) + 1).keys()].map((el, index) => {
+						console.log("star Icon")
+						return <StarRateIcon color="error" key={index} />
+					})}
+					<IconButton aria-haspopup="true"
+						onClick={handleOpenOptions}>
+						<MoreVertIcon />
+					</IconButton>
 				</ListItemIcon>
 				<Menu
 					id="simple-menu"
@@ -99,34 +100,34 @@ export default function Quest(props) {
 					<MenuItem onClick={deleteQuest}><IconButton><DeleteIcon /></IconButton>Delete</MenuItem>
 				</Menu>
 			</ListItem>
-			{props.quest.subList.length>0 ?<><ListItem button onClick={handleToggleSubList}>
+			{props.quest.subList.length > 0 ? <><ListItem button onClick={handleToggleSubList}>
 				<ListItemIcon>
 					<FilterListIcon />
 				</ListItemIcon>
 				<ListItemText primary="Checklist" />
 				{openSubList ? <ExpandLess /> : <ExpandMore />}
 			</ListItem>
-			<Collapse in={openSubList} timeout="auto" unmountOnExit>
-				<List component="div" disablePadding>
-					{props.quest.subList.map((item) => {
-						return(
-						<ListItem button className={classes.nested}>
-							<ListItemIcon>
-								<Checkbox
-									value={checkedSubList}
-									onChange={handleChangeSublist}
-									color="primary"
-								/>
-							</ListItemIcon>
-							<ListItemText primary={item.text} />
-						</ListItem>
-						)
-					})}
-				</List>
-			</Collapse>
+				<Collapse in={openSubList} timeout="auto" unmountOnExit>
+					<List component="div" disablePadding>
+						{props.quest.subList.map((item, index) => {
+							return (
+								<ListItem button key={index} className={classes.nested}>
+									<ListItemIcon>
+										<Checkbox
+											value={checkedSubList}
+											onChange={handleChangeSublist}
+											color="secondary"
+										/>
+									</ListItemIcon>
+									<ListItemText primary={item.text} />
+								</ListItem>
+							)
+						})}
+					</List>
+				</Collapse>
 			</>
-			:null}
-			
+				: null}
+
 			<Divider />
 		</>);
 }
