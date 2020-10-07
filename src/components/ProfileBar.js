@@ -7,6 +7,8 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import MotiQuote from './MotiQuote';
+import { useStoreActions, useStoreState } from 'easy-peasy';
+import Typography from '@material-ui/core/Typography';
 
 const BorderLinearProgress = withStyles((theme) => ({
 	root: {
@@ -32,29 +34,40 @@ const useStyles = makeStyles((theme) => ({
 	large: {
 		width: theme.spacing(25),
 		height: theme.spacing(25),
+		border: "5px solid white",
+		backgroundColor: '#333'
+	},
+	spacePad:{
+		paddingLeft: theme.spacing(6),
+		paddingRight: theme.spacing(6),
+		backgroundColor: '#2c387e'
+	},
+	textWhite:{
+		color: '#ffffff'
 	}
 }));
 
 export default function ProfileBar() {
-	const [progress, setProgress] = useState(0);
+	const [progress, setProgress] = useState(69);
 	const classes = useStyles();
+	const authState = useStoreState(state => state.auth.user);
 
 	return (<>
-
-		<br />
-		<br />
-		<Grid container spacing={2}>
+		<Grid container spacing={4} className={classes.spacePad}>
 			<Grid item xs={4} sm={2}>
-				<Avatar alt="Reeeeeeeee" src="https://qphs.fs.quoracdn.net/main-qimg-885239a3188006aa5e67cbc61403a2c2" className={classes.large} />
+				<Avatar alt="Reeeeeeeee" src="https://i.redd.it/vrnjfeshnjt41.jpg" className={classes.large} />
 			</Grid>
 			<Grid item xs={8} sm={4}>
 				<br />
-				<br />
+	<Typography variant="h4" className={classes.textWhite} >{authState.name}</Typography>
 				<br />
 				<BorderLinearProgress variant="determinate" value={progress} />
-				<TextField value={progress} onChange={(e) => setProgress(e.target.value)} />
+				<Typography variant="subtitle1" className={classes.textWhite}>Level 2 nibba</Typography>
+				<Typography variant="subtitle1" className={classes.textWhite}>69/100</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6}>
+				<br/>
+				<br/>
 				<MotiQuote />
 			</Grid>
 		</Grid>
