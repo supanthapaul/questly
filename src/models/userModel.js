@@ -17,13 +17,21 @@ const userModel = {
 	// payload -> uid
 	startSetStats: thunk((actions, payload) => {
 		return db.collection("stats").doc(payload).onSnapshot(doc => {
-			// set stats to local state
-			actions.setStats(doc.data())
-			// get rank image url
-			actions.startSetRankUrl(doc.data().level);
+			if(doc.data()) {
+				// set stats to local state
+				actions.setStats(doc.data())
+				// get rank image url
+				actions.startSetRankUrl(doc.data().level);
+			}
 		}, err => {
 			actions.setError(err);
 		})
+	}),
+	// payload => {uid, updatedStats}
+	startUpdateStats: thunk((actions, payload) => {
+		const {uid, updatedStats} = {...payload};
+		console.log(updatedStats)
+		return db.collection("stats").doc(uid).set(updatedStats, { merge: true })
 	}),
 	// Gets rank image url from firebase bucket
 	// payload -> level
@@ -32,6 +40,12 @@ const userModel = {
 			.then(url => {
 				actions.setRankUrl(url);
 			})
+	}),
+	setStats: action((state, payload) => {
+		state.stats = {
+			...state.stats,
+			...payload
+		}
 	}),
 	setStats: action((state, payload) => {
 		state.stats = {

@@ -38,7 +38,8 @@ export default function QuestList() {
 		<List aria-label="main mailbox folders" align="center">
 			{
 				itemsState.map((quest) => {
-					return <Quest quest={quest} key={quest.id} deleteQuest={deleteQuest} updateQuest={updateQuest} />
+					if(!quest.isCompleted)
+						return <Quest quest={quest} key={quest.id} deleteQuest={deleteQuest} updateQuest={updateQuest} />
 				})
 			}
 		</List>

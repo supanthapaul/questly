@@ -14,7 +14,7 @@ import firebase from '../firebase/firebaseSetup';
 const useStyles = makeStyles((theme) => ({
   root: {
 		flexGrow: 1,
-		marginBottom: theme.spacing(7.4)
+		marginBottom: theme.spacing(7.3)
   },
   title: {
     flexGrow: 1,
