@@ -1,0 +1,153 @@
+[debug] [2020-10-07T15:43:12.671Z] ----------------------------------------------------------------------
+[debug] [2020-10-07T15:43:12.673Z] Command:       E:\Softwares\NodeJS\node.exe C:\Users\supap\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug -- only functions
+[debug] [2020-10-07T15:43:12.673Z] CLI Version:   8.12.0
+[debug] [2020-10-07T15:43:12.673Z] Platform:      win32
+[debug] [2020-10-07T15:43:12.673Z] Node Version:  v12.18.3
+[debug] [2020-10-07T15:43:12.674Z] Time:          Wed Oct 07 2020 21:13:12 GMT+0530 (India Standard Time)
+[debug] [2020-10-07T15:43:12.674Z] ----------------------------------------------------------------------
+[debug] [2020-10-07T15:43:12.674Z] 
+[error] 
+[error] Error: Too many arguments. Run firebase help deploy for usage instructions
+[debug] [2020-10-07T15:43:20.747Z] ----------------------------------------------------------------------
+[debug] [2020-10-07T15:43:20.749Z] Command:       E:\Softwares\NodeJS\node.exe C:\Users\supap\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug --only functions
+[debug] [2020-10-07T15:43:20.749Z] CLI Version:   8.12.0
+[debug] [2020-10-07T15:43:20.749Z] Platform:      win32
+[debug] [2020-10-07T15:43:20.749Z] Node Version:  v12.18.3
+[debug] [2020-10-07T15:43:20.750Z] Time:          Wed Oct 07 2020 21:13:20 GMT+0530 (India Standard Time)
+[debug] [2020-10-07T15:43:20.750Z] ----------------------------------------------------------------------
+[debug] [2020-10-07T15:43:20.750Z] 
+[debug] [2020-10-07T15:43:20.757Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-07T15:43:20.759Z] > authorizing via signed-in user
+[debug] [2020-10-07T15:43:20.761Z] [iam] checking project questly-60d73 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-10-07T15:43:20.769Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/questly-60d73:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-10-07T15:43:22.487Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1299","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:22.491Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/questly-60d73/serviceAccounts/questly-60d73@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-10-07T15:43:24.356Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'questly-60d73'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script. 
+[debug] [2020-10-07T15:43:29.212Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[warn] 
+[warn] !  functions: The Node.js 8 runtime is deprecated and will be decommissioned on 2021-03-15. For more information, see: https://firebase.google.com/support/faq#functions-runtime 
+[warn] 
+[debug] [2020-10-07T15:43:30.696Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/questly-60d73/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-10-07T15:43:30.699Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/questly-60d73/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-10-07T15:43:32.551Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:33 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:32.738Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:33 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2020-10-07T15:43:32.751Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/questly-60d73/adminSdkConfig  
+ 
+[debug] [2020-10-07T15:43:33.562Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2020-10-07T15:43:33.577Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/questly-60d73/configs  
+ 
+[debug] [2020-10-07T15:43:34.312Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (40.19 KB) for uploading 
+[debug] [2020-10-07T15:43:34.476Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/questly-60d73/locations/-/functions  
+ 
+[debug] [2020-10-07T15:43:35.319Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:35.355Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/questly-60d73/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-10-07T15:43:36.590Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:36.592Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-5d9437f9-81a3-4a78-9da5-34a19e409361/1b5a88f7-3375-4ade-b678-323cf86f30a3.zip?GoogleAccessId=service-475455472595@gcf-admin-robot.iam.gserviceaccount.com&Expires=1602087217&Signature=NsIUKb7NDaj2MRxC1gWrX1W2AIj0Jp%2F5yzM%2FA2newNaAp0eQ1BaSgFzLHupW3hBIS5ESiyfmjtD5FOk5RSorcEecymTrYe5C0u%2FwjL%2BbKLk2hPnw%2FNvwwbdoekxTMBBc8lMQ7mzWwZdI4%2FUPSqKcdDMFyhtlGojt5GwxNFMZ7gejAL9Qnz5SNUyavB2j4NMYrOQJooKZl2epaKfeZ%2FusfgcVAVOvyMaQN54QzdYiFpQy%2FChYQsU%2F3OzyWzrAIjvnRz%2BTjz%2FllWudGuYvwtjpIwgLkB8219hFVkiqmWEPjR4ryI3gJeom%2BnHTBJQthWNKGbagvpHGaG8o5q135qlRPA%3D%3D  
+ <request body omitted>
+[debug] [2020-10-07T15:43:37.502Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ABg5-UygB0FtZIR0uk2mo3Z2r3gbhHefMn8Wh_2flsNFxFG0xHWP8SumHspGgNrWyyUeZ-c2r_nT6Khf4vBBlmX8g2g","etag":"\"bfc58f4e4f9d9a989631fe5c8f7fa336\"","x-goog-generation":"1602085418569599","x-goog-metageneration":"1","x-goog-hash":"crc32c=fScMVg==, md5=v8WPTk+dmpiWMf5cj3+jNg==","x-goog-stored-content-length":"41151","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Wed, 07 Oct 2020 15:43:38 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 8 (Deprecated) function createUserStats(us-central1)... 
+[debug] [2020-10-07T15:43:37.523Z] Trigger is:  {"eventTrigger":{"resource":"projects/questly-60d73","eventType":"providers/firebase.auth/eventTypes/user.create","service":"firebaseauth.googleapis.com"}}
+[debug] [2020-10-07T15:43:37.525Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/questly-60d73/locations/us-central1/functions  
+ {"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-5d9437f9-81a3-4a78-9da5-34a19e409361/1b5a88f7-3375-4ade-b678-323cf86f30a3.zip?GoogleAccessId=service-475455472595@gcf-admin-robot.iam.gserviceaccount.com&Expires=1602087217&Signature=NsIUKb7NDaj2MRxC1gWrX1W2AIj0Jp%2F5yzM%2FA2newNaAp0eQ1BaSgFzLHupW3hBIS5ESiyfmjtD5FOk5RSorcEecymTrYe5C0u%2FwjL%2BbKLk2hPnw%2FNvwwbdoekxTMBBc8lMQ7mzWwZdI4%2FUPSqKcdDMFyhtlGojt5GwxNFMZ7gejAL9Qnz5SNUyavB2j4NMYrOQJooKZl2epaKfeZ%2FusfgcVAVOvyMaQN54QzdYiFpQy%2FChYQsU%2F3OzyWzrAIjvnRz%2BTjz%2FllWudGuYvwtjpIwgLkB8219hFVkiqmWEPjR4ryI3gJeom%2BnHTBJQthWNKGbagvpHGaG8o5q135qlRPA%3D%3D","name":"projects/questly-60d73/locations/us-central1/functions/createUserStats","entryPoint":"createUserStats","labels":{"deployment-tool":"cli-firebase"},"runtime":"nodejs8","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"questly-60d73\",\"databaseURL\":\"https://questly-60d73.firebaseio.com\",\"storageBucket\":\"questly-60d73.appspot.com\",\"locationId\":\"asia-south1\"}"},"eventTrigger":{"resource":"projects/questly-60d73","eventType":"providers/firebase.auth/eventTypes/user.create","service":"firebaseauth.googleapis.com"}}
+[debug] [2020-10-07T15:43:38.734Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:38.737Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:39.460Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:41.502Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:42.138Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:43 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:44.148Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:44.950Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:46 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:46.967Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:47.617Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:49.657Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:50.310Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:51 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:52.354Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:52.987Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:55.014Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:55.720Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:56 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:43:57.756Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:43:58.357Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:43:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:00.382Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:01.022Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:02 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:03.055Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:03.702Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:05.737Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:06.402Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:08.406Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:08.993Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:11.021Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:11.649Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:12 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:13.664Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:14.324Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:15 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:16.345Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:16.967Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:18 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:19.003Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:19.599Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:21.617Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:22.248Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:24.259Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:24.834Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:26.837Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:27.427Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-07T15:44:29.462Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/cXVlc3RseS02MGQ3My91cy1jZW50cmFsMS9jcmVhdGVVc2VyU3RhdHMvZl9xV0RlMWt4N1k  
+ 
+[debug] [2020-10-07T15:44:30.071Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 07 Oct 2020 15:44:31 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
