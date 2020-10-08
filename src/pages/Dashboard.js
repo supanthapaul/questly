@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 
@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) =>({
 export default function Home() {
 	const classes = useStyles();
 	const authState = useStoreState(state => state.auth.user);
+
+	useEffect(() => {
+		document.title ="Home | Questly"
+	}, [])
+
   return (
     <>
 			<ProfileBar/>

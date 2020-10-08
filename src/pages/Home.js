@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -20,6 +20,9 @@ export default function HomePage() {
 				setLoginError(error);
 			})
 	}
+	useEffect(() => {
+		document.title ="Home | Questly"
+	}, [])
 	return (
 		<>
 			<Typography variant="h2">
