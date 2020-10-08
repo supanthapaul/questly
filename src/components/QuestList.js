@@ -1,7 +1,14 @@
+// function pushQuest(quest){
+// 	const newQuest={
+// 		id:uudiv4(),
+// 		...quest,
+// 	}
+// 	setQuestList([...questList, newQuest]);
+// }
+
 import React, { useState } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import QuestForm from './QuestForm';
 import Quest from './Quest';
@@ -33,7 +40,6 @@ export default function QuestList() {
 		.catch((error)=>setQuestError(error));
 	}
 	return (<>
-		<Typography variant="h6">Quests</Typography>
 		<QuestForm addQuest={addQuest}/>
 		<List aria-label="main mailbox folders" align="center">
 			{

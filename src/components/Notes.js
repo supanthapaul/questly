@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import NotesListed from './Note';
+
 
 function NotesForm() {
 	const [note, setNote] = useState("");
@@ -52,7 +52,6 @@ function NotesForm() {
 
 	return (
 		<>
-			<Typography variant="h6">Notes</Typography>
 			<form onSubmit={onFormSubmit} autoComplete="off">
 				<TextField id="standard-basic" label="Add Note" onChange={(e) => setNote(e.target.value)} value={note}
 					variant="filled" fullWidth/>

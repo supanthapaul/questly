@@ -13,8 +13,7 @@ import firebase from '../firebase/firebaseSetup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-		flexGrow: 1,
-		marginBottom: theme.spacing(7.4)
+    flexGrow: 1,
   },
   title: {
     flexGrow: 1,
@@ -27,7 +26,6 @@ export default function Navbar() {
 	const startLogout = useStoreActions(actions => actions.auth.startLogout);
 	const startSetNotes = useStoreActions(actions => actions.notes.startSetNotes);
 	const startSetQuests = useStoreActions(actions => actions.quests.startSetQuests);
-	const startSetStats = useStoreActions(actions => actions.user.startSetStats);
 	const setLogin = useStoreActions(actions => actions.auth.login);
 	const setLogout = useStoreActions(actions => actions.auth.logout);
 	const authState = useStoreState(state => state.auth.user);
@@ -42,8 +40,6 @@ export default function Navbar() {
 				startSetNotes(user.uid)
 				// fetch all the quests from server
 				startSetQuests(user.uid)
-				// fetch user stats from server
-				startSetStats(user.uid)
 				history.push('/dashboard');
 			}
 			else {
@@ -59,7 +55,7 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h5" className={classes.title}>
             Questly

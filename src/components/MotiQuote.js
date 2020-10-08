@@ -9,15 +9,13 @@ const useStyles = makeStyles({
 	title: {
 		fontSize: 18,
 		textAlign: 'center',
-		marginTop: '1rem',
-		color: '#ffffff'
+		marginTop: '1rem'
 	},
 	author: {
 		fontSize: 14,
 		position: 'absolute',
 		right: '3rem',
-		bottom: '0.5rem',
-		color: '#ffffff'
+		bottom: '0.5rem'
 	},
 	actions: {
 		position: 'relative'
@@ -25,9 +23,6 @@ const useStyles = makeStyles({
 	content: {
 		padding: '8px'
 	},
-	background:{
-		backgroundColor: '#2c387e'
-	}
 });
 
 function MotiQuote() {
@@ -41,7 +36,7 @@ function MotiQuote() {
 			})
 			.then(function (data) {
 				getQuote(data);
-				setInterval(getQuote.bind(this, data), 10000);
+				setInterval(getQuote.bind(this, data), 5000);
 			});
 	}, []);
 
@@ -53,10 +48,10 @@ function MotiQuote() {
 
 	return (
 
-		<Card variant="outlined" className={classes.background}>
+		<Card variant="outlined">
 			<CardContent className={classes.content}>
 				<Typography className={classes.title} gutterBottom>
-					<i><q>{quote.text ? (quote.text) : "Loading..."}</q></i>
+					<i>{quote.text ? (quote.text) : "Loading..."}</i>
 				</Typography>
 			</CardContent>
 			<CardActions className={classes.actions}>
