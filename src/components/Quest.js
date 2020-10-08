@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -6,6 +6,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import QuestForm from './QuestForm';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -17,10 +18,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import dayjs from 'dayjs';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export default function Quest(props) {
+	const [dialogueOpen, setDialogueOpen] = useState(false);
 	const [checkedSubList, setCheckedSubList] = useState(false);
 	const [openSubList, setOpenSubList] = useState(false);
 	const [openOption, setOpenOption] = useState(false);
@@ -47,13 +44,14 @@ export default function Quest(props) {
 	const statsState = useStoreState(state => state.user.stats);
 	const authState = useStoreState(state => state.auth.user);
 	const startUpdateStats = useStoreActions(actions => actions.user.startUpdateStats);
+	const startUpdateQuest = useStoreActions(actions => actions.quests.startUpdateQuest);
+	const setQuestError = useStoreActions(actions => actions.quests.setError);
 
 	const handleToggleSubList = () => {
 		setOpenSubList(!openSubList);
 	};
 	// update user stats based on quest completion
 	const setUpdatedStats = () => {
-
 		// xp gains on difficulty
 		const xpGains = [20, 30, 50];
 		let updatedStats = { ...statsState, currXp: statsState.currXp + xpGains[props.quest.difficulty] };
@@ -102,6 +100,11 @@ export default function Quest(props) {
 		handleCloseOptions();
 	}
 
+	const updateQuest = (updatedQuest) => {
+		startUpdateQuest(updatedQuest)
+			.catch((error) => setQuestError(error));
+	}
+
 	return (
 		<>
 			<ListItem>
@@ -132,7 +135,11 @@ export default function Quest(props) {
 					open={Boolean(anchorEl)}
 					onClose={handleCloseOptions}
 				>
-					<MenuItem onClick={handleCloseOptions}><IconButton><EditIcon /></IconButton>Edit</MenuItem>
+					<MenuItem onClick={() => {
+						handleCloseOptions();
+						setDialogueOpen(true)
+					}
+					}><IconButton><EditIcon /></IconButton>Edit</MenuItem>
 					<MenuItem onClick={deleteQuest}><IconButton><DeleteIcon /></IconButton>Delete</MenuItem>
 				</Menu>
 			</ListItem>
@@ -163,7 +170,11 @@ export default function Quest(props) {
 				</Collapse>
 			</>
 				: null}
-
+			<QuestForm
+				dialogTitle="Edit Quest"
+				quest={props.quest}
+				dialogueOpen={dialogueOpen}
+				setDialogueOpen={setDialogueOpen} onFormSubmit={updateQuest} />
 			<Divider />
 		</>);
 }

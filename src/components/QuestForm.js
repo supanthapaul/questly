@@ -43,9 +43,8 @@ const INITIAL_QUEST = { text: "", subList: [], dueDate: "", difficulty: 0, isCom
 
 export default function QuestForm(props) {
 	const classes = useStyles();
-	const [quest, setQuest] = useState(INITIAL_QUEST);
+	const [quest, setQuest] = useState(props.quest || INITIAL_QUEST);
 	const [subList, setSubList] = useState([]);
-	const [dialogueOpen, setDialogueOpen] = useState(false);
 
 	const handleDifficulty = (e, newValue) => {
 		setQuest({ ...quest, difficulty: newValue });
@@ -66,16 +65,12 @@ export default function QuestForm(props) {
 		}
 	];
 
-	const handleClickOpen = () => {
-		if (!dialogueOpen) {
-			setDialogueOpen(true);
-			console.log("handle open");
-			// Set due date to current time
-			setQuest({
-				...quest,
-				dueDate: dayjs().format("YYYY-MM-DDTHH:mm").toString()
-			})
-		}
+	const onDialogOpen = () => {
+		let inputQuest = props.quest || quest;
+		setQuest({
+			...inputQuest,
+			dueDate: dayjs().format("YYYY-MM-DDTHH:mm").toString()
+		})
 
 	};
 
@@ -83,7 +78,7 @@ export default function QuestForm(props) {
 		// empty quest state
 		setQuest(INITIAL_QUEST);
 		setSubList([]);
-		setDialogueOpen(false);
+		props.setDialogueOpen(false);
 	};
 
 	const validateQuestForm = () => {
@@ -109,8 +104,8 @@ export default function QuestForm(props) {
 			...quest,
 			subList: [...subList]
 		}
-		props.addQuest(newQuest);
-		handleDialogueClose();
+		props.onFormSubmit(newQuest);
+		props.setDialogueOpen(false);
 	}
 
 	const addSubList = (e) => {
@@ -129,27 +124,20 @@ export default function QuestForm(props) {
 
 	return (
 		<>
-			<form autoComplete="off">
-				<TextField id="standard-basic" label="Click to start adding a Quest" onClick={handleClickOpen}
-					variant="filled" fullWidth disabled />
-			</form>
-
-			<Dialog open={dialogueOpen} onClose={handleDialogueClose} 
+			<Dialog open={props.dialogueOpen} onFocus={onDialogOpen} onClose={handleDialogueClose} 
 				fullWidth
 				maxWidth="sm" aria-labelledby="form-dialog-title">
-				<DialogTitle id="form-dialog-title">Quest</DialogTitle>
+				<DialogTitle id="form-dialog-title">{props.dialogTitle || "Add a Quest"}</DialogTitle>
 				<DialogContent>
-					<DialogContentText>
-						Enter the task
-					</DialogContentText>
 					<TextField
+						label="Enter Quest"
 						autoFocus
 						margin="dense"
 						id="name"
 						type="text"
 						fullWidth
 						value={quest.text} onChange={(e) => setQuest({ ...quest, text: e.target.value })} autoComplete="off"
-						placeholder="Enter task"
+						placeholder="Ex. Water the plants"
 					/>
 					<br />
 					
