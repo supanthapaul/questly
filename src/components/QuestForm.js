@@ -69,7 +69,7 @@ export default function QuestForm(props) {
 		let inputQuest = props.quest || quest;
 		setQuest({
 			...inputQuest,
-			dueDate: dayjs().format("YYYY-MM-DDTHH:mm").toString()
+			dueDate: dayjs().format("YYYY-MM-DDTHH:mm")
 		})
 
 	};
@@ -136,7 +136,9 @@ export default function QuestForm(props) {
 						id="name"
 						type="text"
 						fullWidth
-						value={quest.text} onChange={(e) => setQuest({ ...quest, text: e.target.value })} autoComplete="off"
+						value={quest.text} onChange={(e) => {
+							console.log(e.target.value)
+							setQuest({ ...quest, text: e.target.value })}} autoComplete="off"
 						placeholder="Ex. Water the plants"
 					/>
 					<br />
@@ -179,7 +181,7 @@ export default function QuestForm(props) {
 							shrink: true,
 						}}
 						value={quest.dueDate}
-						onChange={(e) => setQuest({ ...quest, dueDate: e.target.value })}
+						onChange={(e) => setQuest({ ...quest, dueDate: dayjs(e.target.value).format("YYYY-MM-DDTHH:mm") })}
 						fullWidth
 					/>
 					<br />

@@ -16,8 +16,11 @@ import StarRateIcon from '@material-ui/icons/StarRate';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 import IconButton from '@material-ui/core/IconButton';
 import dayjs from 'dayjs';
 
@@ -35,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Quest(props) {
 	const [dialogueOpen, setDialogueOpen] = useState(false);
+	const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 	const [checkedSubList, setCheckedSubList] = useState(false);
 	const [openSubList, setOpenSubList] = useState(false);
 	const [openOption, setOpenOption] = useState(false);
@@ -53,11 +57,13 @@ export default function Quest(props) {
 	// update user stats based on quest completion
 	const setUpdatedStats = () => {
 		// xp gains on difficulty
+		let levelUp = false;
 		const xpGains = [20, 30, 50];
 		let updatedStats = { ...statsState, currXp: statsState.currXp + xpGains[props.quest.difficulty] };
 		if (updatedStats.currXp >= updatedStats.limitXp) {
 			updatedStats.currXp -= updatedStats.limitXp;
 			updatedStats.level += 1;
+			levelUp = true;
 			updatedStats.limitXp += 25;
 			if (updatedStats.limitXp > updatedStats.maxLimit)
 				updatedStats.limitXp = updatedStats.maxLimit;
@@ -68,7 +74,10 @@ export default function Quest(props) {
 			updatedStats: updatedStats
 		})
 			.then((res) => {
-				console.log("Stats update successful")
+				if(levelUp)
+					props.openSnackbar(`You leveled up to Level ${updatedStats.level}!`)();
+				else
+					props.openSnackbar(`You gained ${xpGains[props.quest.difficulty]}xp!`)();
 			})
 			.catch((err) => console.log("Stats update failed"))
 	}
@@ -104,6 +113,18 @@ export default function Quest(props) {
 		startUpdateQuest(updatedQuest)
 			.catch((error) => setQuestError(error));
 	}
+
+	const handleClick = () => {
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+    };
 
 	return (
 		<>
@@ -175,6 +196,12 @@ export default function Quest(props) {
 				quest={props.quest}
 				dialogueOpen={dialogueOpen}
 				setDialogueOpen={setDialogueOpen} onFormSubmit={updateQuest} />
+			<Snackbar anchorOrigin={{vertical:'bottom', horizontal:'left'}}
+            open={snackbarOpen} autoHideDuration={5000} onClose={handleSnackbarClose} message={<>
+                <Typography>
+                <DoneAllIcon style={{padding:"1px"}}/>
+                    Level up
+                </Typography></>}/>
 			<Divider />
 		</>);
 }

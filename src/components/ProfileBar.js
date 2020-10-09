@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	textWhite: {
 		color: '#ffffff'
+	},
+	flexCenter: {
+		display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'
 	}
 }));
 
@@ -58,11 +61,11 @@ export default function ProfileBar() {
 	return (<>
 		<br />
 		<Grid container spacing={4} className={classes.spacePad}>
-			<Grid item xs={4} sm={2}>
-				<img alt="Reeeeeeeee" src={rankUrl} className={classes.large} />
+			<Grid item xs={12} sm={2} className={classes.flexCenter}>
+				<img alt="Rank Image" src={rankUrl} className={classes.large} />
 			</Grid>
-			<Grid item xs={8} sm={4}>
-				<br />
+			<Grid item xs={12} sm={4}>
+
 				<Typography variant="h4" className={classes.textWhite} >{authState.name}</Typography>
 				<Typography variant="subtitle1" className={classes.textWhite}>Level {level} Warrior</Typography>
 				<br />
@@ -70,9 +73,7 @@ export default function ProfileBar() {
 				<Typography variant="subtitle1" className={classes.textWhite}>{currXp}/{limitXp} Experience Points</Typography>
 				<Typography variant="subtitle1" className={classes.textWhite}>{limitXp - currXp} more xp to reach Level {level + 1}! </Typography>
 			</Grid>
-			<Grid item xs={12} sm={6}>
-				<br />
-				<br />
+			<Grid item xs={12} sm={6} className={classes.flexCenter}>
 				<MotiQuote />
 			</Grid>
 		</Grid>

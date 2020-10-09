@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import QuestForm from './QuestForm';
 import Quest from './Quest';
 
-export default function QuestList() {
+export default function QuestList(props) {
 	const [dialogueOpen, setDialogueOpen] = useState(false);
 
 	const itemsState = useStoreState(state => state.quests.items);
@@ -46,7 +46,7 @@ export default function QuestList() {
 			{
 				itemsState.map((quest) => {
 					if(!quest.isCompleted)
-						return <Quest quest={quest} key={quest.id} deleteQuest={deleteQuest} updateQuest={updateQuest} />
+						return <Quest quest={quest} key={quest.id} deleteQuest={deleteQuest} updateQuest={updateQuest} openSnackbar={props.openSnackbar} />
 				})
 			}
 		</List>
