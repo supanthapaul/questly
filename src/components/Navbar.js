@@ -72,6 +72,8 @@ export default function Navbar() {
 						</> :
 						<Button color="inherit" component={RouterLink} to={ROUTES.HOME}>Login</Button>
 					}
+					<Button color="inherit" component={RouterLink} to={ROUTES.ABOUT}>About</Button>
+					<Button color="inherit" component={RouterLink} to={ROUTES.HELP}>Help</Button>
           
         </Toolbar>
       </AppBar>
