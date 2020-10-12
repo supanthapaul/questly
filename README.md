@@ -1,7 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<p align="center">
+<img src="https://raw.githubusercontent.com/supanthapaul/questly/master/public/img/Quest.ly.png" alt="Logo" width="250" height="250" />
+</p>
+<p align="center">
+Gamify your Task Managment
+</p>
 
+## Usage
 In the project directory, you can run:
 
 ### `npm start`
