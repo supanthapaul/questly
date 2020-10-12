@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Grid from '@material-ui/core/Grid';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
-import MotiQuote from '../components/MotiQuote';
 import Notes from '../components/Notes';
 import QuestList from '../components/QuestList';
 
@@ -34,7 +31,7 @@ export default function Home() {
 	const authState = useStoreState(state => state.auth.user);
 
 	useEffect(() => {
-		document.title = "Home | Questly"
+		document.title = "Dashboard | Questly"
 	}, [])
 
 	// ----- SNACKBAR FUNCTIONS -----

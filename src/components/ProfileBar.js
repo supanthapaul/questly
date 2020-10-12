@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfileBar() {
-	const [progress, setProgress] = useState(69);
 	const classes = useStyles();
 	const authState = useStoreState(state => state.auth.user);
 	const { level, currXp, limitXp, rankUrl } = useStoreState(state => state.user.stats);

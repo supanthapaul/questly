@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import dayjs from 'dayjs';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,6 +16,12 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import AddIcon from '@material-ui/icons/Add';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 
 
 // quest: {
@@ -39,12 +45,13 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 	},
 }));
-const INITIAL_QUEST = { text: "", subList: [], dueDate: "", difficulty: 0, isCompleted: false };
+const INITIAL_QUEST = { text: "", subList: [], dueDate: new Date(), difficulty: 0, isCompleted: false };
 
 export default function QuestForm(props) {
 	const classes = useStyles();
 	const [quest, setQuest] = useState(props.quest || INITIAL_QUEST);
 	const [subList, setSubList] = useState([]);
+
 
 	const handleDifficulty = (e, newValue) => {
 		setQuest({ ...quest, difficulty: newValue });
@@ -67,11 +74,11 @@ export default function QuestForm(props) {
 
 	const onDialogOpen = () => {
 		let inputQuest = props.quest || quest;
+		if(props.quest)
+			setSubList(props.quest.subList)
 		setQuest({
 			...inputQuest,
-			dueDate: dayjs().format("YYYY-MM-DDTHH:mm")
 		})
-
 	};
 
 	const handleDialogueClose = () => {
@@ -102,10 +109,11 @@ export default function QuestForm(props) {
 		
 		const newQuest = {
 			...quest,
+			dueDate: dayjs(quest.dueDate).format("YYYY-MM-DDTHH:mm"),
 			subList: [...subList]
 		}
 		props.onFormSubmit(newQuest);
-		props.setDialogueOpen(false);
+		handleDialogueClose();
 	}
 
 	const addSubList = (e) => {
@@ -172,18 +180,40 @@ export default function QuestForm(props) {
 						</List>
 					}
 					<br />
-
-					<TextField
+					<MuiPickersUtilsProvider utils={DateFnsUtils}>
+						<KeyboardDatePicker
+							disableToolbar
+							variant="inline"
+							format="dd/MM/yyyy"
+							margin="normal"
+							id="date-picker-inline"
+							label="Due Date"
+							value={quest.dueDate}
+							onChange={(date) => setQuest({ ...quest, dueDate: date})}
+							KeyboardButtonProps={{
+								'aria-label': 'change date',
+							}}
+							fullWidth
+					/>
+					</MuiPickersUtilsProvider>
+					{/* <DatePicker
+					selected={quest.dueDate}
+					onChange={(date) => setQuest({ ...quest, dueDate: dayjs(date).format("YYYY-MM-DD")})}
+					customInput={({ value, onClick }) => (
+						<TextField
 						id="date"
 						label="Due Date"
-						type="datetime-local"
+						type="date"
 						InputLabelProps={{
 							shrink: true,
 						}}
-						value={quest.dueDate}
-						onChange={(e) => setQuest({ ...quest, dueDate: dayjs(e.target.value).format("YYYY-MM-DDTHH:mm") })}
+						value={value}
+						onClick={onClick}
+						// onChange={(e) => setQuest({ ...quest, dueDate: dayjs(e.target.value).format("YYYY-MM-DDTHH:mm") })}
 						fullWidth
 					/>
+						)}
+				/> */}
 					<br />
 					<br />
 					<Typography id="discrete-slider" gutterBottom>
