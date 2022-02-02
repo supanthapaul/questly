@@ -9,6 +9,8 @@
   <a href="https://questly-60d73.web.app/">Website</a>
 </p>
 
+### Learn more about the project through the [Project Report](https://github.com/supanthapaul/questly/blob/master/Questly%20Report_Final.pdf) 
+
 ## Usage
 In the project directory, you can run:
 
