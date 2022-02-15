@@ -4,7 +4,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
 
 import Divider from '@material-ui/core/Divider';
 

@@ -49,11 +49,7 @@ export default function FormDialog()
       ];
     const[Open, setOpen] = useState(false);
     const [checked, setChecked] = useState(false);
-    const [selectedDate, setSelectedDate] = React.useState("");
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   const handleSubChange = () => {
     setChecked(!checked);

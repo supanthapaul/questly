@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useStoreActions, useStoreState } from 'easy-peasy';
-import { Link as RouterLink } from 'react-router-dom';
-import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from "@material-ui/core/Divider";
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
 import { Grid } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({

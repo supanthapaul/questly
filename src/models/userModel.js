@@ -1,5 +1,5 @@
 import { action, thunk } from 'easy-peasy';
-import firebase, { database as db, storage } from '../firebase/firebaseSetup';
+import { database as db, storage } from '../firebase/firebaseSetup';
 
 const INITIAL_STATE = {
 	level: 1,
@@ -40,12 +40,6 @@ const userModel = {
 			.then(url => {
 				actions.setRankUrl(url);
 			})
-	}),
-	setStats: action((state, payload) => {
-		state.stats = {
-			...state.stats,
-			...payload
-		}
 	}),
 	setStats: action((state, payload) => {
 		state.stats = {

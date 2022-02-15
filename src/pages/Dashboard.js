@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import React, { useEffect} from 'react';
+import { useStoreState } from 'easy-peasy';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Grid from '@material-ui/core/Grid';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
@@ -28,7 +25,7 @@ export default function Home() {
 	const [snackPack, setSnackPack] = React.useState([]);
 	const [snackbarMessageInfo, setSnackbarMessageInfo] = React.useState(undefined);
 
-	const authState = useStoreState(state => state.auth.user);
+	//const authState = useStoreState(state => state.auth.user);
 
 	useEffect(() => {
 		document.title = "Dashboard | Questly"

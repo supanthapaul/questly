@@ -1,5 +1,5 @@
 import { action, thunk } from 'easy-peasy';
-import firebase, { database as db } from '../firebase/firebaseSetup';
+import { database as db } from '../firebase/firebaseSetup';
 import dayjs from 'dayjs';
 
 const questsModel = {

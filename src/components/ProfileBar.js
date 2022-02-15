@@ -1,13 +1,10 @@
 //make profile here or fuck it
-import React, { useState } from 'react';
+import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
 import MotiQuote from './MotiQuote';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import { useStoreState } from 'easy-peasy';
 import Typography from '@material-ui/core/Typography';
 
 const BorderLinearProgress = withStyles((theme) => ({
